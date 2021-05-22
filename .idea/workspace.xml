@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="816096b9-e293-4781-8101-41a6feb1e08e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Data Flow Diagram_1.bpb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Flow Diagram_1.bpm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBookDB设计.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/会员信息ER图.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/会员信息ER图.eddx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/图书信息ER图.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/图书信息ER图.eddx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/工作空间.sws" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数据库案例设计以及实现要求-期中.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数据流.eddx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/数据流图.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/整体ER图.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/整体ER图.eddx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/订单信息ER图.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/订单信息ER图.eddx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/设计.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/购物车ER图.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/购物车ER图.eddx" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1su9ar7LhxYt2i2HHSvbg5TNeF1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="816096b9-e293-4781-8101-41a6feb1e08e" name="Default Changelist" comment="" />
+      <created>1621711674769</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1621711674769</updated>
+    </task>
+    <servers />
+  </component>
+</project>
