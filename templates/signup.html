@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>mybookdb</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aguafina+Script">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arizonia">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome5-overrides.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Add-Another-Button.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Clean.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Navigation-with-Search.css' %}">
+ 
+</head>
+
+<body>
+    <section class="login-clean" style="background: url(&quot;{% static 'assets/img/portfolio-1.jpg' %}&quot;);background-size: cover;">
+        <form method="post">
+            {% csrf_token %}
+            <h2 class="visually-hidden">Login Form</h2>
+            <div class="illustration"><i class="icon ion-ios-location-outline" style="background: var(--bs-light);border-color: var(--bs-warning);color: var(--bs-blue);"></i></div>
+            <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username(required)" required=""></div>
+            <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Surname"></div>
+            <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email(required)" required=""></div>
+            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password(required)" required=""><p>error</p></div>
+            <div class="mb-3"><input class="form-control" type="tel" name="phone" placeholder="Tel-phone(required)" required=""></div>
+            <div class="mb-3"><input class="form-control" type="text" name="address 1" placeholder="Address 1(required)" required=""></div>
+            <div class="mb-3"><button class="btn btn-outline-primary text-truncate float-none float-sm-none add-another-btn" data-bss-hover-animate="pulse" type="button" id='address' onclick='aba();'>Add Another Address<i class="fas fa-plus-circle edit-icon"></i></button></div>
+            <div id="addressa"></div> 
+            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="background: var(--bs-blue);color: var(--bs-white);">Sign up</button></div><a class="forgot" href="../login">Have an account? Login here.</a>
+        </form>
+    </section>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/bs-init.js' %}"></script>
+    <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>
+    <script>
+        function aba() {
+            $('#addressa').append('<div class="mb-3"><input class="form-control" type="text" name="address 2" placeholder="Address 2" required=""></div>');         
+        };
+    
+    </script>
+    
+</body>
+
+</html>

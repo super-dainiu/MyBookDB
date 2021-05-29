@@ -6,32 +6,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>mybookdb</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aguafina+Script">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arizonia">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="{% static 'fonts/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/ionicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/simple-line-icons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Login-Form-Clean.css' %}">
-    <link rel="stylesheet" href="{% static 'css/Navigation-with-Search.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Clean.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Navigation-with-Search.css' %}">
 </head>
 
 <body>
-    <section class="login-clean" style="background: url(&quot;{% static 'img/bg-callout.jpg' %}&quot;);">
+    <section class="login-clean" style="background: url(&quot;{% static 'assets/img/bg-callout.jpg' %}&quot;);">
         <form method="post">
+            {% csrf_token %}
             <h2 class="visually-hidden">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-location-outline" style="background: var(--bs-light);border-color: var(--bs-warning);color: rgb(252,213,5);"></i></div>
-            <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+            <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Email/Username"></div>
             <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: rgb(240,218,13);">Log In</button></div><a class="forgot" href="#" style="text-align: right;">sign up</a>
+            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: rgb(240,218,13);">Log In</button></div><a class="forgot" href="../signup" style="text-align: right;">sign up</a>
         </form>
     </section>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/stylish-portfolio.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/bs-init.js' %}"></script>
+    <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>
 </body>
 
 </html>
