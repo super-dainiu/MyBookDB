@@ -6,7 +6,7 @@ Project for 数据库及实现
   ```
   pip install -r requirements.txt
   ```
-2. Set up database and create in project root file "MyBookDB/settings.py" containing something like:
+2. Set up database and replace my username and password in project root file "MyBookDB/settings.py" containing something like:
 
   ```
 DATABASES = {
