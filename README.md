@@ -26,3 +26,4 @@ DATABASES = {
   python manage.py migrate --fake
   python manage.py createsuperuser
   ```
+4. Import .csv in "/playground/" with navicat to generate some random users and books for experiments.
