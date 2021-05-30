@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import User
+from .models import *
 from django.db import connection
+from .forms import *
 
 # Create your views here.
 
@@ -10,7 +11,14 @@ def login(request):
 	if request.method == "POST":
 		username = request.POST.get('username')
 		password = request.POST.get('password')
-		print(username, password)
+		user = User.objects.filter(username=username, pwd=password)
+		email = User.objects.filter(email=username, pwd=password)
+		if user:
+			return HttpResponse(user)
+		elif email:
+			return HttpResponse(list(email)[0].pwd)
+		else:
+			return render(request, 'login.html', {'errmsg': 'Username or password error'})
 	return render(request, 'login.html')
 
 
