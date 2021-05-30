@@ -1,5 +1,5 @@
 # MyBookDB
-Project for 数据库及实现 DATA130039
+Project for 数据库及实现
 # Installation
 1. Create virtualenv and install dependencies:
 
