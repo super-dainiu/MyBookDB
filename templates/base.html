@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>mybookdb_login</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="icon" href="{% static 'assets/icon/icon.ico' %}">
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
@@ -23,17 +23,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Clean.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/Navigation-with-Search.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/Perfect-navigation-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Perfect-navigation-bar.css' %}">    
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome5-overrides.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Filter.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-1.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Clean.css' %}">
 </head>
 
 <body>
     {% block navibar %}
     {% endblock %}
+    {% block filter %}
+    {% endblock %}
     <footer class="footer text-center" style="height: 207.8px;">
         <div></div>
         <div class="container">
             <ul class="list-inline mb-5">
-                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="#" style="background: var(--bs-yellow);"><i class="icon-globe"></i></a></li>
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="https://sds.fudan.edu.cn/" style="background: var(--bs-yellow);"><i class="icon-globe"></i></a></li>
                 <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="https://github.com/Super-Dainiu/DATA130039.01-MyBookDB" style="background: var(--bs-yellow);"><i class="icon-social-github"></i></a></li>
                 <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="mailto:https://github.com/Super-Dainiu/DATA130039.01-MyBookDB" style="background: var(--bs-yellow);"><i class="icon-social-google"></i></a></li>
             </ul>

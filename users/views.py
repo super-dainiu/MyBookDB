@@ -1,7 +1,11 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from login.models import User as user
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'users.html')
+    if user.objects.filter(status=1):
+        return render(request, 'users.html')
+    else:
+        return redirect("../")

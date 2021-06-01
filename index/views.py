@@ -1,11 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from login.models import User
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'index.html')
+    href = 'home/' if User.objects.filter(status=1) else 'accounts/login'
+    return render(request, 'index.html', {"href": href})
 
 
 def home(request):
-    return render(request, 'home.html')
+    if User.objects.filter(status=1):
+        return render(request, 'home.html')
+    else:
+        return redirect("../")

@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from login.models import *
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'books.html')
+    if User.objects.filter(status=1):
+        return render(request, 'books.html')
+    else:
+        return redirect("../")
