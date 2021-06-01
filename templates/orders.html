@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block navibar %}
+ <nav class="navbar navbar-dark navbar-expand-md sticky-top shadow-lg" style="color: rgb(255,255,255);opacity: 1;background: var(--bs-secondary);">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1" style="background-color: rgb(255,255,255);color: #ffffff;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255);background-color: rgb(255,255,255);"><a href="/home/"><img src="{% static 'assets/img/icon.png' %}" style="width: 44px;"></a>
+                <ul class="navbar-nav flex-grow-1 justify-content-between" style="color: rgb(156,156,156);background: var(--bs-secondary);">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 20px;" href="/users/" >Users</a></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 20px;" href="/publishers/">Publishers</a></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 20px;"  target="_top" href="/writers/">Writers</a></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 20px;" href="/books/" >Books</a></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-grey);font-size: 20px;" >Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: #ff5c5c;font-size: 20px;" href="/"><i class="fa fa-user" style="color: #ff5c5c;"></i>&nbsp;<button class="btn btn-primary" type="button" style="background: var(--bs-red);color: var(--bs-white);">Log out</button></a></li>
+                    <li class="nav-item"><a class="nav-link active"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
