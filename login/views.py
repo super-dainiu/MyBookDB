@@ -25,7 +25,7 @@ def login(request):
 				User.objects.filter(email=username).update(status=1)
 				return redirect('../../home/')
 			else:
-				return render(request, 'login.html', {'errmsg2': 'Password error', 'username': email})
+				return render(request, 'login.html', {'errmsg2': 'Password error', 'username': email.first().email})
 		else:
 			return render(request, 'login.html', {'errmsg1': 'No such Username or Email'})
 	return render(request, 'login.html')

@@ -1,0 +1,64 @@
+.navbar.navbar-dark.navbar-expand-md.sticky-top {
+}
+
+div {
+}
+
+div {
+}
+
+.container {
+  max-width: 960px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+    overflow: visible;
+  }
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+a:active {
+  background: red;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a:focus, a:hover {
+  color: #0085A1;
+}
+
+* {
+  /*box-sizing: inherit;*/
+}
+
+*:before, *:after {
+  /*box-sizing: inherit;*/
+}
+
+span {
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+.container {
+  max-width: 960px;
+}
+
