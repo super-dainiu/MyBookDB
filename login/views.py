@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from django.db import connection
@@ -11,24 +11,38 @@ def login(request):
 	if request.method == "POST":
 		username = request.POST.get('username')
 		password = request.POST.get('password')
-		user = User.objects.filter(username=username, pwd=password)
-		email = User.objects.filter(email=username, pwd=password)
+		user = User.objects.filter(username=username)
+		email = User.objects.filter(email=username)
 		if user:
-			return HttpResponse(user)
+			if User.objects.get(username=username).pwd == password:
+				return redirect('../../home/')
+			else:
+				return render(request, 'login.html', {'errmsg2': 'Password error', 'username': username})
 		elif email:
-			return HttpResponse(list(email)[0].pwd)
+			if User.objects.get(email=username).pwd == password:
+				return redirect('../../home/')
+			else:
+				return render(request, 'login.html', {'errmsg2': 'Password error', 'username': email})
 		else:
-			return render(request, 'login.html', {'errmsg': 'Username or password error'})
+			return render(request, 'login.html', {'errmsg1': 'No such Username or Email'})
 	return render(request, 'login.html')
 
 
 def signup(request):
 	if request.method == "POST":
 		username = request.POST.get('username')
-		name = request.POST.get('name')
-		password = request.POST.get('password')
+		password1 = request.POST.get('password1')
+		password2 = request.POST.get('password2')
 		email = request.POST.get('email')
-		phone = request.POST.get('phone')
-		address = request.POST.get('address 1')
-		print(username, name, password, email, phone, address)
+		if User.objects.filter(username=username):
+			return render(request, 'signup.html', {'errmsg1': 'Username used', 'email': email, 'password1': password1,
+												'password2': password2})
+		if User.objects.filter(email=email):
+			return render(request, 'signup.html', {'errmsg2': 'Email used', 'username': username, 'password1': password1,
+												'password2': password2})
+		if password1 != password2:
+			return render(request, 'signup.html', {'errmsg3': 'Please input the same password', 'username': username,
+												'email': email, 'password1': password1})
+		newuser = User.objects.create(username=username, email=email, pwd=password1)
+		return redirect('../login')
 	return render(request, 'signup.html')

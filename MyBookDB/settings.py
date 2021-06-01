@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'django_bootstrap_staticfiles',
     'login',
     'index',
+    'users',
+    'books',
+    'publishers',
+    'writers',
+    'orders',
 ]
 
 MIDDLEWARE = [

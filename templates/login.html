@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>mybookdb</title>
+    <title>mybookdb_login</title>
+    <link rel="icon" href="{% static 'assets/icon/icon.ico' %}">
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
@@ -27,12 +28,24 @@
             {% csrf_token %}
             <h2 class="visually-hidden">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-location-outline" style="background: var(--bs-light);border-color: var(--bs-warning);color: rgb(252,213,5);"></i></div>
-            <div style='color:red;'>{{ errmsg }}</div>
-            <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Email/Username"></div>
-            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: rgb(240,218,13);">Log In</button></div><a class="forgot" href="../signup" style="text-align: right;">sign up</a>
+            {% if errmsg1 %} <div style='color:red;'>{{ errmsg1 }}</div> {% endif %}
+            <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Email/Username" value='{{ username }}' required=""></div>
+            {% if errmsg2 %} <div style='color:red;'>{{ errmsg2 }}</div> {% endif %}
+            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password" required=""></div>
+            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: rgb(240,218,13);">Log In</button></div><a class="forgot" href="../signup" style="text-align: right;">Sign up</a>
         </form>
     </section>
+    <footer class="footer text-center">
+        <div></div>
+        <div class="container">
+            <ul class="list-inline mb-5">
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="#" style="background: var(--bs-yellow);"><i class="icon-globe"></i></a></li>
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="https://github.com/Super-Dainiu/DATA130039.01-MyBookDB" style="background: var(--bs-yellow);"><i class="icon-social-github"></i></a></li>
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="mailto:https://github.com/Super-Dainiu/DATA130039.01-MyBookDB" style="background: var(--bs-yellow);"><i class="icon-social-google"></i></a></li>
+            </ul>
+            <p class="text-muted mb-0 small">Copyright &nbsp;© Daniel 2021</p>
+        </div><a class="js-scroll-trigger scroll-to-top rounded" href="#page-top"><i class="fa fa-angle-up"></i></a>
+    </footer>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/bs-init.js' %}"></script>
     <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>

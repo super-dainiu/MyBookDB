@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - Brand</title>
+    <link rel="icon" href="{% static 'assets/icon/icon.ico' %}">
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
@@ -16,46 +17,39 @@
     <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/fonts/simple-line-icons.min.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Clean.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Add-Another-Button.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/Navigation-with-Search.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Highlight-Blue.css' %}">
 </head>
 
 <body id="page-top">
-    <nav class="navbar navbar-light navbar-expand" id="sidebar-wrapper">
-        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler d-none" data-bs-target="#" data-bss-hover-animate="pulse"></button>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav sidebar-nav" id="sidebar-nav">
-                    <li class="nav-item sidebar-brand"><a class="nav-link active js-scroll-trigger" href="#page-top">Brand</a></li>
-                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Home</a></li>
-                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item sidebar-nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-                </ul>
+    <header class="d-flex masthead" style="background: url(&quot;{% static 'assets/img/books.jpg' %}&quot;) center / cover no-repeat;height: 457px;">
+        <section class="highlight-blue" style="width: 100000px;background: radial-gradient(var(--bs-yellow), #fccc93), var(--bs-secondary);height: 256px;">
+            <div class="container">
+                <div class="buttons">
+                    <h1 style="font-family: 'Alfa Slab One', serif;font-size: 82px;">MyBookDB</h1>
             </div>
-        </div>
-    </nav>
-    <header class="d-flex masthead" style="background: url(&quot;{% static 'assets/img/books.jpg' %}&quot;) center / cover no-repeat;">
-        <div class="container my-auto text-center">
-            <h1 data-bss-hover-animate="pulse" class="mb-1" style="background: url(&quot;https://cdn.bootstrapstudio.io/placeholders/1400x800.png&quot;), var(--bs-purple);filter: blur(0px) brightness(97%);box-shadow: 0px 0px 8px 5px;text-shadow: 0px 0px 2px var(--bs-primary);color: rgb(218,163,20);font-size: 66px;font-family: Raleway, sans-serif;border-color: rgb(218,163,20);transform: translate(0px);">MyBook E-shop</h1><a class="btn btn-secondary btn-xl js-scroll-trigger" role="button" data-bss-hover-animate="jello" href="/user/login" style="font-size: 27px;color: var(--bs-white);font-family: Raleway, sans-serif;">Welcome</a>
-            <div class="overlay"></div>
-        </div>
+            <div class="container">
+                <div class="buttons"><a class="btn btn-primary" role="button" href="/accounts/login/" style="border-color: var(--bs-orange);background: var(--bs-orange);">Get STARTED</a></div>
+            </div>
+        </section>
     </header>
-    <footer class="footer text-center">
+    <footer class="footer text-center" style="height: 207.8px;">
         <div></div>
         <div class="container">
             <ul class="list-inline mb-5">
                 <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="#" style="background: var(--bs-yellow);"><i class="icon-globe"></i></a></li>
-                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="#" style="background: var(--bs-yellow);"><i class="icon-social-github"></i></a></li>
-                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="#" style="background: var(--bs-yellow);"><i class="icon-social-google"></i></a></li>
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="https://github.com/Super-Dainiu/DATA130039.01-MyBookDB" style="background: var(--bs-yellow);"><i class="icon-social-github"></i></a></li>
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="mailto:https://github.com/Super-Dainiu/DATA130039.01-MyBookDB" style="background: var(--bs-yellow);"><i class="icon-social-google"></i></a></li>
             </ul>
             <p class="text-muted mb-0 small">Copyright &nbsp;© Daniel 2021</p>
         </div><a class="js-scroll-trigger scroll-to-top rounded" href="#page-top"><i class="fa fa-angle-up"></i></a>
     </footer>
-    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'assets/js/bs-init.js' %}"></script>
-    <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/stylish-portfolio.js"></script>
 </body>
+
+</html>
 
 </html>

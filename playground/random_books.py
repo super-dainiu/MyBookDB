@@ -6,7 +6,8 @@ advanced = ["Effective %s", "Advanced Tutorial for %s", "%s Development", "All o
 specialized_for = ["%s Tutorial for %s", "Effective %s for %s", "%s-%s"]
 specialized_with = ["%s with %s", "%s in %s"]
 languages = ["Python", "Java", "C", "C++", "C#", "Ruby", "PHP", "HTML", "MySQL", "LateX", "Fortran", "Matlab", "Go",
-             "Pascal", "JavaScript", "Linux", "R", "Github"]
+             "Pascal", "JavaScript", "Linux", "R", "Github"
+             ]
 fields = ["Machine Learning", "Numerical Algorithms", "Data Science", "Web Development", "Software Engineering",
           "Deep Learning", "Databases", "Artificial Intelligence", "Game Designs", "Computer Architecture",
           "Social Network Mining", "Statistics", "Operating Systems", "Algorithms",

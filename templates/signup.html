@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>mybookdb</title>
+    <title>mybookdb_signup</title>
+    <link rel="icon" href="{% static 'assets/icon/icon.ico' %}">
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro">
@@ -31,26 +32,30 @@
             {% csrf_token %}
             <h2 class="visually-hidden">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-location-outline" style="background: var(--bs-light);border-color: var(--bs-warning);color: var(--bs-blue);"></i></div>
-            <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username(required)" required=""></div>
-            <div class="mb-3"><input class="form-control" type="text" name="name" placeholder="Surname"></div>
-            <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email(required)" required=""></div>
-            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password(required)" required=""><p>error</p></div>
-            <div class="mb-3"><input class="form-control" type="tel" name="phone" placeholder="Tel-phone(required)" required=""></div>
-            <div class="mb-3"><input class="form-control" type="text" name="address 1" placeholder="Address 1(required)" required=""></div>
-            <div class="mb-3"><button class="btn btn-outline-primary text-truncate float-none float-sm-none add-another-btn" data-bss-hover-animate="pulse" type="button" id='address' onclick='aba();'>Add Another Address<i class="fas fa-plus-circle edit-icon"></i></button></div>
-            <div id="addressa"></div> 
+            {% if errmsg1 %} <div style='color:red;'>{{ errmsg1 }}</div> {% endif %}
+            <div class="mb-3"><input class="form-control" type="text" name="username" placeholder="Username" required="" value='{{ username }}'></div>
+            {% if errmsg2 %} <div style='color:red;'>{{ errmsg2 }}</div> {% endif %}
+            <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email" required="" value='{{ email }}'></div>
+            <div class="mb-3"><input class="form-control" type="password" name="password1" placeholder="Password" required="" value='{{ password1 }}'></div>
+            {% if errmsg3 %} <div style='color:red;'>{{ errmsg3 }}</div> {% endif %}
+            <div class="mb-3"><input class="form-control" type="password" name="password2" placeholder="Repeat your Password" required="" value='{{ password2 }}'></div> 
             <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="background: var(--bs-blue);color: var(--bs-white);">Sign up</button></div><a class="forgot" href="../login">Have an account? Login here.</a>
         </form>
     </section>
+    <footer class="footer text-center">
+        <div></div>
+        <div class="container">
+            <ul class="list-inline mb-5">
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="#" style="background: var(--bs-blue);"><i class="icon-globe"></i></a></li>
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="https://github.com/Super-Dainiu/DATA130039.01-MyBookDB" style="background: var(--bs-blue);"><i class="icon-social-github"></i></a></li>
+                <li class="list-inline-item">&nbsp;<a class="link-light social-link rounded-circle" href="mailto:https://github.com/Super-Dainiu/DATA130039.01-MyBookDB" style="background: var(--bs-blue);"><i class="icon-social-google"></i></a></li>
+            </ul>
+            <p class="text-muted mb-0 small">Copyright &nbsp;© Daniel 2021</p>
+        </div><a class="js-scroll-trigger scroll-to-top rounded" href="#page-top"><i class="fa fa-angle-up"></i></a>
+    </footer>
     <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'assets/js/bs-init.js' %}"></script>
     <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>
-    <script>
-        function aba() {
-            $('#addressa').append('<div class="mb-3"><input class="form-control" type="text" name="address 2" placeholder="Address 2" required=""></div>');         
-        };
-    
-    </script>
     
 </body>
 
