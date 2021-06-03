@@ -60,7 +60,9 @@
                 <option value="asc" {% if order2 == "asc" %}selected=""{% endif %}>ASC</option>
                 <option value="desc" {% if order2 == "desc" %}selected=""{% endif %}>DESC</option>
             </select>
-            <center><div class="mb-3" style="width: 150px; text-align:center;"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px;">Search</button></div></center><br>
+            <center><div class="mb-3" style="width: 150px; text-align:center; margin-right: 200px;"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:left;">Search</button></div></center>
+            <center><a href="/users/"><div class='mb-3' href="/users/" style="width: 150px; text-align:center; margin-left: 200px; "><div class="btn btn-primary d-block w-100" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:right;" href="/users/">Reset</div></div></center><br><br>
+            <div style="clear:both;"></div></a>
 
         </form>
     </div></div></div>
@@ -84,21 +86,24 @@
                                     <th class="text-center" style="background: var(--bs-yellow);">action</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center">
-                                {% for user in users %}
-                                <tr>
-                                    <td>{{user.id}}</td>
-                                    <td>{{user.name}}</td>
-                                    <td>{{user.sex}}</td>
-                                    <td>{{user.email}}</td>
-                                    <td>{{user.phone}}</td>
-                                    <td>{{user.address}}</td>
-                                    <td>{% if user.vip %}Yes{% else %}No{% endif %}</td>
-                                    <td>0</td>
-                                    <td class="text-center"><a class="btn btn-success" role="button" style="background: rgb(11,171,56);margin: 2px;"><i class="fas fa-pencil-alt"></i></a><a class="btn btn-danger" role="button" style="margin: 2px;"><i class="fas fa-trash"></i></a></td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
+                                <tbody class="text-center">
+                                    {% for user in users %}
+                                    <tr>
+                                        <td>{{user.id}}</td>
+                                        <td>{{user.name}}</td>
+                                        <td>{{user.sex}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.phone}}</td>
+                                        <td>{{user.address}}</td>
+                                        <td>{% if user.vip %}Yes{% else %}No{% endif %}</td>
+                                        <td>0</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-success" role="button" style="background: rgb(11,171,56);margin: 2px;"><i class="fas fa-pencil-alt"></i></a>
+                                            <a class="btn btn-danger" role="button" style="margin: 2px;" href="?{{ request.GET.urlencode }}&delete={{user.id}}"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
                         </table>
                     </div>
                 </div>

@@ -6,17 +6,18 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, Invali
 
 
 def index(request):
-    info = {"fields": User._meta.fields}
+    info = {"fields": User._meta.fields, "users":{}}
     if not(user.objects.filter(status=1)):
         return redirect("../")
     name_filter = ''
     address_filter = ''
     email_filter = ''
-    id_filter=''
+    id_filter = ''
     orderby = ''
     orderby2 = ''
     order = ''
     order2 = ''
+    delete_id=None
     if request.method == "GET":
         name_filter = request.GET.get('name') if request.GET.get('name') else ''
         address_filter = request.GET.get('address') if request.GET.get('address') else ''
@@ -26,9 +27,11 @@ def index(request):
         order = request.GET.get('order')
         orderby2 = request.GET.get('orderby2')
         order2 = request.GET.get('order2')
-        print(email_filter)
+        delete_id = request.GET.get('delete')
         info.update({"name_filter": name_filter, "address_filter": address_filter, "orderby": orderby, "order": order,
                      "orderby2": orderby2, "order2": order2, "email_filter": email_filter, "id_filter": id_filter})
+    if delete_id:
+        User.objects.filter(id=delete_id).delete()
     orders = []
     if orderby:
         if order == "asc":
