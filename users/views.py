@@ -7,7 +7,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, Invali
 
 def index(request):
     info = {"fields": User._meta.fields, "users":{}}
-    if not(user.objects.filter(status=1)):
+    if not(user.objects.filter(ip=request.META['REMOTE_ADDR'])):
         return redirect("../")
     name_filter = ''
     address_filter = ''

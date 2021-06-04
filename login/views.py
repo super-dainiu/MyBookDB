@@ -8,7 +8,7 @@ from .forms import *
 
 
 def login(request):
-	User.objects.filter(status=True).update(status=False)
+	User.objects.filter(ip=request.META['REMOTE_ADDR']).update(ip=False)
 	if request.method == "POST":
 		username = request.POST.get('username')
 		password = request.POST.get('password')
@@ -16,13 +16,13 @@ def login(request):
 		email = User.objects.filter(email=username)
 		if user:
 			if User.objects.get(username=username).pwd == password:
-				User.objects.filter(username=username).update(status=1)
+				User.objects.filter(username=username).update(ip=request.META['REMOTE_ADDR'])
 				return redirect('../../home/')
 			else:
 				return render(request, 'login.html', {'errmsg2': 'Password error', 'username': username})
 		elif email:
 			if User.objects.get(email=username).pwd == password:
-				User.objects.filter(email=username).update(status=1)
+				User.objects.filter(email=username).update(ip=request.META['REMOTE_ADDR'])
 				return redirect('../../home/')
 			else:
 				return render(request, 'login.html', {'errmsg2': 'Password error', 'username': email.first().email})
@@ -52,5 +52,5 @@ def signup(request):
 
 
 def logout(request):
-	User.objects.filter(status=True).update(status=False)
+	User.objects.filter(ip=request.META['REMOTE_ADDR']).update(ip=0)
 	return redirect("../../")

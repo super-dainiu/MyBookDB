@@ -5,7 +5,7 @@ from login.models import *
 
 
 def index(request):
-    if User.objects.filter(status=1):
+    if User.objects.filter(ip=request.META['REMOTE_ADDR']):
         return render(request, 'publishers.html')
     else:
         return redirect("../")

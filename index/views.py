@@ -5,12 +5,13 @@ from login.models import User
 
 
 def index(request):
-    href = 'home/' if User.objects.filter(status=1) else 'accounts/login'
+    href = 'home/' if User.objects.filter(ip=request.META['REMOTE_ADDR']) else 'accounts/login'
+    print(request.META['REMOTE_ADDR'])
     return render(request, 'index.html', {"href": href})
 
 
 def home(request):
-    if User.objects.filter(status=1):
+    if User.objects.filter(ip=request.META['REMOTE_ADDR']):
         return render(request, 'home.html')
     else:
         return redirect("../")
