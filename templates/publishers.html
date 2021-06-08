@@ -19,3 +19,97 @@
         </div>
     </nav>
 {% endblock %}
+{% block filter %}
+<body>
+    <section style="padding: 70px; background: url(&quot;{% static 'assets/img/portfolio-3.jpg' %}&quot;) center / cover no-repeat;">
+        <div class="container-fluid" style="width:800px;background: radial-gradient(var(--bs-yellow), var(--bs-warning) 100%); text-align:center;">
+        <div class="filter" style="text-align:center;" >
+        <form method="get" id="myform">
+            <label for="name" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Name</label>
+            <input placeholder="Name" style="width:150px;" name="name" id="name" value="{{name_filter}}"></input>
+            <label for="address" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Address</label>
+            <input placeholder="Address" style="width:150px;" name="address" id="address" value="{{address_filter}}"></input><br>
+            <label for="email" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Email</label>
+            <input placeholder="Email" style="width:150px;" name="email" id="email" value="{{email_filter}}"></input>
+            <label for="id" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">ID</label>
+            <input placeholder="ID" style="width:150px;" name="id" id="id" value="{{id_filter}}"></input><br>
+            <label for="orderby" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Order by</label>
+            <select name="orderby" id="orderby" value={{orderby}}>
+                <option value="">None</option>
+                {% for field in fields %}
+                <option value="{{field.name}}" {% if field.name == orderby %}selected=""{% endif %}>{{field.verbose_name}}</option>
+                {% endfor %}
+            </select>
+            <label for="order" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">In</label>
+            <select name="order" id="order" value={{order}}>
+                <option value="">None</option>
+                <option value="asc" {% if order == "asc" %}selected=""{% endif %}>ASC</option>
+                <option value="desc" {% if order == "desc" %}selected=""{% endif %}>DESC</option>
+            </select>
+            <br>
+            <label for="orderby2" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Order by</label>
+            <select name="orderby2" id="orderby2">
+                <option value="">None</option>
+                {% for field in fields %}
+                <option value="{{field.name}}" {% if field.name == orderby2 %}selected=""{% endif %}>{{field.verbose_name}}</option>
+                {% endfor %}
+            </select>
+            <label for="order2" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">In</label>
+            <select name="order2" id="order2">
+                <option value="">None</option>
+                <option value="asc" {% if order2 == "asc" %}selected=""{% endif %}>ASC</option>
+                <option value="desc" {% if order2 == "desc" %}selected=""{% endif %}>DESC</option>
+            </select>
+            <center><div class="mb-3" style="width: 150px; text-align:center; margin-right: 200px;"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:left;">Search</button></div></center>
+            <center><a href="/publishers/"><div class='mb-3' href="/publishers/" style="width: 150px; text-align:center; margin-left: 200px; "><div class="btn btn-primary d-block w-100" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:right;" href="/publishers/">Reset</div></div></center><br><br>
+            <div style="clear:both;"></div></a>
+
+        </form>
+    </div></div></div>
+    <div class="card" id="TableSorterCard">
+                <div class="card-header py-3">
+    <div class="container-fluid" style="padding:50px;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table tablesorter" id="ipi-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="text-center" style="background: var(--bs-yellow);">id</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">name</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">phone</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">email</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">contact</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">address</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">actions</th>
+                                </tr>
+                            </thead>
+                                <tbody class="text-center">
+                                    {% for publisher in publishers %}
+                                    <tr>
+                                        <td>{{publisher.id}}</td>
+                                        <td>{{publisher.name}}</td>
+                                        <td>{{publisher.phone_number}}</td>
+                                        <td>{{publisher.email}}</td>
+                                        <td>{{publisher.contacts}}</td>
+                                        <td>{{publisher.address}}</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-success" role="button" style="background: rgb(11,171,56);margin: 2px;"><i class="fas fa-pencil-alt"></i></a>
+                                            <a class="btn btn-danger" role="button" style="margin: 2px;" href="?{{ request.GET.urlencode }}&delete={{publisher.id}}"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script src="{% static 'assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-1.js' %}"></script>
+{% endblock %}
