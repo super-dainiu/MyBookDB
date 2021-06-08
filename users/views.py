@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from login.models import User as user
 from .models import *
+from django.db import transaction
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 # Create your views here.
 
@@ -53,7 +55,63 @@ def index(request):
 
 
 def create(request):
-    pass
+    info = {}
+    if request.method == "POST":
+        name = request.POST.get("name")
+        sex = request.POST.get("sex")
+        phone = request.POST.get("phone")
+        email = request.POST.get("email")
+        address = request.POST.get("address")
+        vip = request.POST.get("vip")
+        info.update({'name': name, 'sex': sex, 'phone': phone, 'email': email, 'address': address, 'vip': vip})
+        if User.objects.filter(name=name):
+            info.update({"nameerr": "Already exists %s"%name})
+            info.pop('name')
+            return render(request, 'edituser.html', info)
+        if User.objects.filter(phone=phone):
+            info.update({"phoneerr": "Phone number already used by %s" % User.objects.get(phone=phone).name})
+            info.pop('phone')
+            return render(request, 'edituser.html', info)
+        if User.objects.filter(email=email):
+            info.update({"emailerr": "Email already used by %s" % User.objects.get(email=email).name})
+            info.pop('email')
+            return render(request, 'edituser.html', info)
+        new=User.objects.create(name=name, phone=phone, email=email, sex=sex, address=address, vip=bool(vip))
+        return redirect('../?id=%d'%new.id)
+    return render(request, 'edituser.html', info)
 
 
-def edit(request,id):
+def edit(request, userid):
+    with transaction.atomic():
+        target = User.objects.select_for_update(skip_locked=True).get(id=userid)
+        info = {'name': target.name, 'sex': target.sex, 'phone': target.phone, 'email': target.email,
+                'address': target.address, 'vip': str(target.vip)}
+        if request.method == "POST":
+            name = request.POST.get("name")
+            sex = request.POST.get("sex")
+            phone = request.POST.get("phone")
+            email = request.POST.get("email")
+            address = request.POST.get("address")
+            vip = request.POST.get("vip")
+            info.update({'name': name, 'sex': sex, 'phone': phone, 'email': email, 'address': address, 'vip': vip})
+            if User.objects.filter(name=name).exclude(id=userid):
+                info.update({"nameerr": "Already exists %s" % name})
+                info['name']=target.name
+                return render(request, 'edituser.html', info)
+            if User.objects.filter(phone=phone).exclude(id=userid):
+                info.update({"phoneerr": "Phone number already used by %s" % User.objects.get(phone=phone).name})
+                info['phone']=target.phone
+                return render(request, 'edituser.html', info)
+            if User.objects.filter(email=email).exclude(id=userid):
+                info.update({"emailerr": "Email already used by %s" % User.objects.get(email=email).name})
+                info['email']=target.email
+                return render(request, 'edituser.html', info)
+            target.name=name
+            target.phone=phone
+            target.email=email
+            target.sex=sex
+            target.address=address
+            target.vip=bool(vip)
+            target.save()
+            return redirect('../?id=%d'%userid)
+        return render(request, 'edituser.html', info)

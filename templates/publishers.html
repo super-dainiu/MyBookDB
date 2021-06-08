@@ -25,45 +25,53 @@
         <div class="container-fluid" style="width:800px;background: radial-gradient(var(--bs-yellow), var(--bs-warning) 100%); text-align:center;">
         <div class="filter" style="text-align:center;" >
         <form method="get" id="myform">
-            <label for="name" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Name</label>
-            <input placeholder="Name" style="width:150px;" name="name" id="name" value="{{name_filter}}"></input>
-            <label for="address" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Address</label>
-            <input placeholder="Address" style="width:150px;" name="address" id="address" value="{{address_filter}}"></input><br>
-            <label for="email" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Email</label>
-            <input placeholder="Email" style="width:150px;" name="email" id="email" value="{{email_filter}}"></input>
-            <label for="id" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">ID</label>
-            <input placeholder="ID" style="width:150px;" name="id" id="id" value="{{id_filter}}"></input><br>
+            <br>
+            <center>
+            <div class="mb-3">
+            <input class="form-control" placeholder="Name" style="width:60%;" name="name" id="name" value="{{name_filter}}"></input></div>
+            <div class="mb-3">
+            <input class="form-control" placeholder="Address" style="width:60%;" name="address" id="address" value="{{address_filter}}"></input>
+            </div>
+            <div class="mb-3">
+            <input class="form-control"  placeholder="Email" style="width:60%;" name="email" id="email" value="{{email_filter}}"></input>
+            </div>
+            <div class="mb-3">
+            <input class="form-control" placeholder="ID" style="width:60%;" name="id" id="id" value="{{id_filter}}"></input>
+            </div>
+            <div class="mb-3">
             <label for="orderby" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Order by</label>
-            <select name="orderby" id="orderby" value={{orderby}}>
-                <option value="">None</option>
+            <select name="orderby" id="orderby" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not orderby %}selected=""{% endif %}>None</option>
                 {% for field in fields %}
                 <option value="{{field.name}}" {% if field.name == orderby %}selected=""{% endif %}>{{field.verbose_name}}</option>
                 {% endfor %}
             </select>
             <label for="order" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">In</label>
-            <select name="order" id="order" value={{order}}>
-                <option value="">None</option>
+            <select name="order" id="order" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not order %}selected=""{% endif %}>None</option>
                 <option value="asc" {% if order == "asc" %}selected=""{% endif %}>ASC</option>
                 <option value="desc" {% if order == "desc" %}selected=""{% endif %}>DESC</option>
             </select>
-            <br>
+            </div>
+            <div class="mb-3">
             <label for="orderby2" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Order by</label>
-            <select name="orderby2" id="orderby2">
-                <option value="">None</option>
+            <select name="orderby2" id="orderby2" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not orderby2 %}selected=""{% endif %}>None</option>
                 {% for field in fields %}
                 <option value="{{field.name}}" {% if field.name == orderby2 %}selected=""{% endif %}>{{field.verbose_name}}</option>
                 {% endfor %}
             </select>
             <label for="order2" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">In</label>
-            <select name="order2" id="order2">
-                <option value="">None</option>
+            <select name="order2" id="order2" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not order2 %}selected=""{% endif %}>None</option>
                 <option value="asc" {% if order2 == "asc" %}selected=""{% endif %}>ASC</option>
                 <option value="desc" {% if order2 == "desc" %}selected=""{% endif %}>DESC</option>
             </select>
+            </div>
             <center><div class="mb-3" style="width: 150px; text-align:center; margin-right: 200px;"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:left;">Search</button></div></center>
-            <center><a href="/publishers/"><div class='mb-3' href="/publishers/" style="width: 150px; text-align:center; margin-left: 200px; "><div class="btn btn-primary d-block w-100" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:right;" href="/publishers/">Reset</div></div></center><br><br>
+            <center><a href="/users/"><div class='mb-3' href="/users/" style="width: 150px; text-align:center; margin-left: 200px; "><div class="btn btn-primary d-block w-100" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:right;" href="/users/">Reset</div></div></center><br><br>
             <div style="clear:both;"></div></a>
-
+            </center>
         </form>
     </div></div></div>
     <div class="card" id="TableSorterCard">
