@@ -52,3 +52,10 @@ def index(request):
         info.update({"publishers": Publishers.objects.filter(name__icontains=name_filter, address__icontains=address_filter,
                                                   email__icontains=email_filter).order_by(*orders)})
     return render(request, 'publishers.html', info)
+
+
+def create(request):
+    pass
+
+
+def edit(request,id):

@@ -50,3 +50,10 @@ def index(request):
         info.update({"users": User.objects.filter(name__icontains=name_filter, address__icontains=address_filter,
                                                   email__icontains=email_filter).order_by(*orders)})
     return render(request, 'users.html', info)
+
+
+def create(request):
+    pass
+
+
+def edit(request,id):

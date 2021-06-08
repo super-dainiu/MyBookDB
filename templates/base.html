@@ -15,9 +15,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arizonia">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/fonts/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome5-overrides.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/Add-Another-Button.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/Highlight-Blue.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -26,16 +28,17 @@
     <link rel="stylesheet" href="{% static 'assets/css/Perfect-navigation-bar.css' %}">    
     <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome5-overrides.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/Filter.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/fonts/simple-line-icons.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-1.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Clean.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Contact-Form-Clean.css' %}">
 </head>
 
 <body>
     {% block navibar %}
     {% endblock %}
     {% block filter %}
+    {% endblock %}
+    {% block edit %}
     {% endblock %}
     <footer class="footer text-center" style="height: 207.8px;">
         <div></div>
