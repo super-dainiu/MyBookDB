@@ -5,7 +5,7 @@ from django.db import models
 
 class Books(models.Model):
     title = models.CharField(max_length=32, verbose_name='书名')
-    writers = models.ManyToManyField(to="writers.Writers", verbose_name='作者/译者')
+    writers = models.ManyToManyField(to="writers.Writers", verbose_name='作者/译者', on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     price_vip = models.DecimalField(max_digits=4, decimal_places=2)
     publishers = models.ForeignKey(to="publishers.Publishers", verbose_name='出版社', on_delete=models.CASCADE)
