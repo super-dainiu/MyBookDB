@@ -8,7 +8,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, Invali
 
 
 def index(request):
-    info = {"fields": User._meta.fields, "users":{}}
+    info = {"fields": User._meta.fields, "users": {}}
     if not(user.objects.filter(ip=request.META['REMOTE_ADDR'])):
         return redirect("../")
     name_filter = ''
@@ -19,7 +19,7 @@ def index(request):
     orderby2 = ''
     order = ''
     order2 = ''
-    delete_id=None
+    delete_id = None
     if request.method == "GET":
         name_filter = request.GET.get('name') if request.GET.get('name') else ''
         address_filter = request.GET.get('address') if request.GET.get('address') else ''
@@ -56,6 +56,8 @@ def index(request):
 
 def create(request):
     info = {}
+    if not(user.objects.filter(ip=request.META['REMOTE_ADDR'])):
+        return redirect("../")
     if request.method == "POST":
         name = request.POST.get("name")
         sex = request.POST.get("sex")
@@ -82,6 +84,8 @@ def create(request):
 
 
 def edit(request, userid):
+    if not(user.objects.filter(ip=request.META['REMOTE_ADDR'])):
+        return redirect("../")
     with transaction.atomic():
         target = User.objects.select_for_update(skip_locked=True).get(id=userid)
         info = {'name': target.name, 'sex': target.sex, 'phone': target.phone, 'email': target.email,

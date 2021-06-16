@@ -19,3 +19,100 @@
         </div>
     </nav>
 {% endblock %}
+{% block filter %}
+<body>
+    <section style="padding: 70px; background: url(&quot;{% static 'assets/img/portfolio-3.jpg' %}&quot;) center / cover no-repeat;">
+        <div class="container-fluid" style="width:800px;background: radial-gradient(var(--bs-yellow), var(--bs-warning) 100%); text-align:center;">
+        <div class="filter" style="text-align:center;" >
+        <form method="get" id="myform">
+            <br>
+            <center>
+            <div class="mb-3">
+            <input class="form-control" placeholder="Name" style="width:60%;" name="name" id="name" value="{{name_filter}}"></input></div>
+            <input class="form-control" placeholder="ID" style="width:60%;" name="id" id="id" value="{{id_filter}}"></input></div><br>
+            <div class="mb-3">
+            <select name="author_type" id="author_type" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not author_type_filter %}selected=""{% endif %}>Both</option>
+                <option value="Author" {% if author_type_filter == "Author" %}selected=""{% endif %}>Author</option>
+                <option value="Translator" {% if author_type_filter == "Translator" %}selected=""{% endif %}>Translator</option>
+
+            </select>
+            </div>
+            <div class="mb-3">
+            <label for="orderby" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Order by</label>
+            <select name="orderby" id="orderby" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not orderby %}selected=""{% endif %}>None</option>
+                {% for field in fields %}
+                <option value="{{field.name}}" {% if field.name == orderby %}selected=""{% endif %}>{{field.verbose_name}}</option>
+                {% endfor %}
+            </select>
+            <label for="order" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">In</label>
+            <select name="order" id="order" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not order %}selected=""{% endif %}>None</option>
+                <option value="asc" {% if order == "asc" %}selected=""{% endif %}>ASC</option>
+                <option value="desc" {% if order == "desc" %}selected=""{% endif %}>DESC</option>
+            </select>
+            </div>
+            <div class="mb-3">
+            <label for="orderby2" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Order by</label>
+            <select name="orderby2" id="orderby2" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not orderby2 %}selected=""{% endif %}>None</option>
+                {% for field in fields %}
+                <option value="{{field.name}}" {% if field.name == orderby2 %}selected=""{% endif %}>{{field.verbose_name}}</option>
+                {% endfor %}
+            </select>
+            <label for="order2" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">In</label>
+            <select name="order2" id="order2" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                <option value="" {% if not order2 %}selected=""{% endif %}>None</option>
+                <option value="asc" {% if order2 == "asc" %}selected=""{% endif %}>ASC</option>
+                <option value="desc" {% if order2 == "desc" %}selected=""{% endif %}>DESC</option>
+            </select>
+            </div>
+            <center><div class="mb-3" style="width: 150px; text-align:center; margin-right: 200px;"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:left;">Search</button></div></center>
+            <center><a href="/writers/"><div class='mb-3' href="/writers/" style="width: 150px; text-align:center; margin-left: 200px; "><div class="btn btn-primary d-block w-100" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:right;" href="/writers/">Reset</div></div></center><br><br>
+            <div style="clear:both;"></div></a>
+            </center>
+        </form>
+    </div></div></div>
+    <div class="card" id="TableSorterCard">
+                <div class="card-header py-3">
+    <div class="container-fluid" style="padding:50px;">
+        <div class="new" style="text-align:right;" ><a class="btn btn-success" role="button" style="margin: 2px;width: 150px" href="createwriter/">Add Writer <i class="fa fa-plus-square-o"></i></a></div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table tablesorter" id="ipi-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="text-center" style="background: var(--bs-yellow);">id</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">Name</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">Authortype</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">action</th>
+                                </tr>
+                            </thead>
+                                <tbody class="text-center">
+                                    {% for writer in writers %}
+                                        <tr>
+                                            <td>{{writer.id}}</td>
+                                            <td>{{writer.name}}</td>
+                                            <td>{{writer.author_type}}</td>
+                                            <td class="text-center">
+                                                <a class="btn btn-success" role="button" style="background: rgb(11,171,56);margin: 2px;" href="editwriters/{{writer.id}}"><i class="fas fa-pencil-alt"></i></a>
+                                                <a class="btn btn-danger" role="button" style="margin: 2px;" href="?{{ request.GET.urlencode }}&delete={{writer.id}}"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script src="{% static 'assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-1.js' %}"></script>
+{% endblock %}

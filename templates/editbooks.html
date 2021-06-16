@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Edit Book{% endblock %}
+{% block navibar %}
+ <nav class="navbar navbar-dark navbar-expand-md sticky-top shadow-lg" style="color: rgb(255,255,255);opacity: 1;background: var(--bs-secondary);">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1" style="background-color: rgb(255,255,255);color: #ffffff;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255);background-color: rgb(255,255,255);"><a href="/home/"><img src="{% static 'assets/img/icon.png' %}" style="width: 44px;"></a>
+                <ul class="navbar-nav flex-grow-1 justify-content-between" style="color: rgb(156,156,156);background: var(--bs-secondary);">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-gray);font-size: 20px;" href="/users/">Users</a></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 20px;" href="/publishers/">Publishers</a></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 20px;" href="/writers/" target="_top">Writers</a></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 20px;" href="/books/">Books</a></li>
+                    <li class="nav-item"><a class="nav-link scroll" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 20px;" href="/orders/">Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" data-bss-hover-animate="pulse" style="font-family: ABeeZee, sans-serif;color: #ff5c5c;font-size: 20px;" href="/accounts/logout/"><i class="fa fa-user" style="color: #ff5c5c;"></i>&nbsp;<button class="btn btn-primary" type="button" style="background: var(--bs-red);color: var(--bs-white);">Log out</button></a></li>
+                    <li class="nav-item"><a class="nav-link active"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+{% block edit %}
+<section style="padding: 70px; background: url(&quot;{% static 'assets/img/books2.jpg' %}&quot;) center / cover no-repeat;">
+    <div class="container-fluid" style="padding:50px; width:70%; background:var(--bs-white)">
+    <section class="contact-clean">
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="text-center">Book Information</h2>
+                <div class="mb-3"><input class="form-control " type="text" name="title" placeholder="Title" value="{{title}}"></div>
+                <div class="mb-3">
+                    <select name="writers" id="writers" style="background:#fafdfe; height:40px; width:100%; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; padding-left: 8px;">
+                        <option value="None" {% if writers == "None" %}selected=""{% endif %}>None</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Publishers" style="font-family: ABeeZee, sans-serif;color: var(--bs-black);font-size: 15px;">Publishers</label>
+                    <select name="publisher" id="Publishers" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                    {% for name in publishers %}
+                    <option value="{{Publishers.name}}" {% if Publishers.name == publisher %}selected=""{% endif %}>{{Publishers.name}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3"><input class="form-control " type="text"   name="price" placeholder="Price" value="{{price}}" </div>
+                <div class="mb-3"><input class="form-control " type="text"   name="price_vip" placeholder="Price_vip" value="{{price_vip}}" </div>
+                <div class="mb-3">
+                    <label for="Classification" style="font-family: ABeeZee, sans-serif;color: var(--bs-black);font-size: 15px;">Classification</label>
+                    <select name="Classification" id="Classification" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
+                    {% for Classification in books %}
+                    <option value="{{Classification.class_name}}" {% if Classification == Classification.class_name %}selected=""{% endif %}>{{Classification.class_name}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3"><input class="form-control " type="text"   name="storage" placeholder="storage" value="{{storage}}" </div>
+                <div class="text-center mb-3"><button class="btn btn-danger text-center w-100" type="submit" style="background: var(--bs-yellow);">Submit</button></div>
+            </form>
+        </section>
+    </div>
+</section>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/stylish-portfolio.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script src="{% static 'assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-1.js' %}"></script>
+{% endblock %}

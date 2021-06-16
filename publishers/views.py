@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from login.models import *
+from login.models import User
 from .models import *
+from django.db import transaction
 
 # Create your views here.
 
@@ -55,8 +56,66 @@ def index(request):
 
 
 def create(request):
-    pass
+    info = {}
+    if not (User.objects.filter(ip=request.META['REMOTE_ADDR'])):
+        return redirect("../")
+    if request.method == "POST":
+        name = request.POST.get("name")
+        phone_number = request.POST.get("phone_number")
+        email = request.POST.get("email")
+        contacts = request.POST.get("contacts")
+        address = request.POST.get("address")
+        info.update(
+            {'name': name, 'phone_number': phone_number, 'email': email, 'contacts': contacts, 'address': address})
+        if Publishers.objects.filter(name=name):
+            info.update({"nameerr": "Already exists %s" % name})
+            info.pop('name')
+            return render(request, 'editpublishers.html', info)
+        if Publishers.objects.filter(phone_number=phone_number):
+            info.update({"phoneerr": "Phone number already used by %s" % Publishers.objects.get(phone_number=phone_number).name})
+            info.pop('phone_number')
+            return render(request, 'editpublishers.html', info)
+        if Publishers.objects.filter(email=email):
+            info.update({"emailerr": "Email already used by %s" % Publishers.objects.get(email=email).name})
+            info.pop('email')
+            return render(request, 'editpublishers.html', info)
+        new = Publishers.objects.create(name=name, phone_number=phone_number, email=email, contacts=contacts, address=address)
+        return redirect('../?id=%d' % new.id)
+    return render(request, 'editpublishers.html', info)
 
 
-def edit(request,id):
-    pass
+def edit(request, publisherid):
+    if not (User.objects.filter(ip=request.META['REMOTE_ADDR'])):
+        return redirect("../")
+    with transaction.atomic():
+        target = Publishers.objects.select_for_update(skip_locked=True).get(id=publisherid)
+        info = {'name': target.name, 'phone_number': target.phone_number, 'email': target.email,
+                'contacts': target.contacts, 'address': target.address}
+        if request.method == "POST":
+            name = request.POST.get("name")
+            phone_number = request.POST.get("phone_number")
+            email = request.POST.get("email")
+            contacts = request.POST.get("contacts")
+            address = request.POST.get("address")
+
+            info.update({'name': name,  'phone_number': phone_number, 'email': email, 'contacts': contacts, 'address': address})
+            if Publishers.objects.filter(name=name).exclude(id=publisherid):
+                info.update({"nameerr": "Already exists %s" % name})
+                info['name']=target.name
+                return render(request, 'editpublishers.html', info)
+            if Publishers.objects.filter(phone_number=phone_number).exclude(id=publisherid):
+                info.update({"phoneerr": "Phone number already used by %s" % Publishers.objects.get(phone_number=phone_number).name})
+                info['phone_number']=target.phone_number
+                return render(request, 'editpublishers.html', info)
+            if Publishers.objects.filter(email=email).exclude(id=publisherid):
+                info.update({"emailerr": "Email already used by %s" % Publishers.objects.get(email=email).name})
+                info['email']=target.email
+                return render(request, 'editpublishers.html', info)
+            target.name=name
+            target.phone_number=phone_number
+            target.email=email
+            target.address=address
+            target.contacts=contacts
+            target.save()
+            return redirect('../?id=%d'%publisherid)
+        return render(request, 'editpublishers.html', info)
