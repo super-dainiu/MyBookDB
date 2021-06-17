@@ -19,3 +19,13 @@
         </div>
     </nav>
 {% endblock %}
+{% block filter %}
+<section class="highlight-clean">
+        <div class="container">
+            <div class="intro">
+                <h1 class="text-center">{% now "H" as current_time %} {% if current_time|add:"0" > 12  and current_time|add:"0" < 18 %}Good afternoon! {% elif current_time|add:"0" <= 12 and  current_time|add:"0" >= 6 %}Good morning! {% elif current_time|add:"0" < 6 %}Take a break now! {% else %}Good evening! {% endif %}</h1>
+            </div>
+            <div class="buttons"><a class="btn btn-primary" role="button" href="?business=1" style="background: var(--bs-yellow);">I'm ready!</a><a class="btn btn-light" role="button" href="../home">Let me take a break!</a></div>
+        </div>
+    </section>
+{% endblock %}
