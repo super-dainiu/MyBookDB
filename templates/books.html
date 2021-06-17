@@ -28,33 +28,19 @@
             <br>
             <center>
             <div class="mb-3">
-            <input class="form-control" placeholder="ID" style="width:60%;" name="id" id="id" value="{{id_filter}}"></input>
+                <input class="form-control" placeholder="ID" style="width:60%;" name="id" id="id" value="{{id_filter}}"></input>
             </div>
             <div class="mb-3">
-            <input class="form-control" placeholder="Title" style="width:60%;" name="title" id="title" value="{{title_filter}}"></input></div>
-            <div class="mb-3">
-                <label for="Writer" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Writer</label>
-                <select name="writer" id="writer" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
-                {% for name in writers %}
-                <option value="{{writer.name}}" {% if Publishers.name == publisher %}selected=""{% endif %}>{{Publishers.name}}</option>
-                {% endfor %}
-                </select>
+                <input class="form-control" placeholder="Title" style="width:60%;" name="title" id="title" value="{{title_filter}}"></input>
             </div>
             <div class="mb-3">
-                <label for="Publishers" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Publishers</label>
-                <select name="publisher" id="Publishers" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
-                {% for name in publishers %}
-                <option value="{{Publishers.name}}" {% if Publishers.name == publisher %}selected=""{% endif %}>{{Publishers.name}}</option>
-                {% endfor %}
-                </select>
+                <input class="form-control" placeholder="Writer" style="width:60%;" name="writer" id="writer" value="{{writer_filter}}"></input>
             </div>
             <div class="mb-3">
-                <label for="Classification" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Classification</label>
-                <select name="Classification" id="Classification" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
-                {% for Classification in books %}
-                <option value="{{Classification.class_name}}" {% if Classification == Classification.class_name %}selected=""{% endif %}>{{Classification.class_name}}</option>
-                {% endfor %}
-                </select>
+                <input class="form-control" placeholder="Publisher" style="width:60%;" name="publisher" id="publisher" value="{{publisher_filter}}"></input>
+            </div>
+            <div class="mb-3">
+                <input class="form-control" placeholder="Classification" style="width:60%;" name="classification" id="classification" value="{{classification_filter}}"></input>
             </div>
             <div class="mb-3">
             <label for="orderby" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Order by</label>
@@ -87,7 +73,7 @@
             </select>
             </div>
             <center><div class="mb-3" style="width: 150px; text-align:center; margin-right: 200px;"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:left;">Search</button></div></center>
-            <center><a href="/users/"><div class='mb-3' href="/users/" style="width: 150px; text-align:center; margin-left: 200px; "><div class="btn btn-primary d-block w-100" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:right;" href="/users/">Reset</div></div></center><br><br>
+            <center><a href="/books/"><div class='mb-3' href="/users/" style="width: 150px; text-align:center; margin-left: 200px; "><div class="btn btn-primary d-block w-100" style="color: rgb(255, 255, 255);background: var(--bs-success); width: 50px; float:right;" href="/books/">Reset</div></div></center><br><br>
             <div style="clear:both;"></div></a>
             </center>
         </form>
@@ -111,6 +97,7 @@
                                     <th class="text-center" style="background: var(--bs-yellow);">classification</th>
                                     <th class="text-center" style="background: var(--bs-yellow);">publishdate</th>
                                     <th class="text-center" style="background: var(--bs-yellow);">edition</th>
+                                    <th class="text-center" style="background: var(--bs-yellow);">storage</th>
                                     <th class="text-center" style="background: var(--bs-yellow);">action</th>
                                 </tr>
                             </thead>
@@ -119,11 +106,12 @@
                                     <tr>
                                         <td>{{book.id}}</td>
                                         <td>{{book.title}}</td>
-                                        <td>{{book.writer}}</td>
+                                        <td>{{book.writer_id}}</td>
+                                        <td>{{book.price}}</td>
                                         <td>{{book.price_vip}}</td>
-                                        <td>{{book.publisher}}</td>
+                                        <td>{{book.publishers_id}}</td>
                                         <td>{{book.classification}}</td>
-                                        <td>{{book.publishdate}}</td>
+                                        <td>{{book.publish_date}}</td>
                                         <td>{{book.edition}}</td>
                                         <td>0</td>
                                         <td class="text-center">
