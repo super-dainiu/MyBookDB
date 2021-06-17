@@ -22,9 +22,11 @@ class Books(models.Model):
     def __str__(self):
         return self.title + '--相关图书信息'
 
-    class Classification(models.Model):
-        class_name = models.CharField(max_length=20, verbose_name='主类名', default='blank')
 
-    class ClassificationSub(models.Model):
-        class_name = models.CharField(max_length=20, verbose_name='子类名')
-        ancestor_class_name = models.ForeignKey(to="Classification", on_delete=models.CASCADE, verbose_name='父分类')
+class Classification(models.Model):
+    class_name = models.CharField(max_length=20, verbose_name='主类名', default='blank')
+
+
+class ClassificationSub(models.Model):
+    class_name = models.CharField(max_length=20, verbose_name='子类名')
+    ancestor_class_name = models.ForeignKey(to="Classification", on_delete=models.CASCADE, verbose_name='父分类')
