@@ -55,7 +55,6 @@ def index(request):
                                                        author_type=author_type_filter).order_by(*orders)})
     else:
         info.update({"writers": Writers.objects.filter(name__icontains=name_filter).order_by(*orders)})
-    print(info)
     return render(request, 'writers.html', info)
 
 

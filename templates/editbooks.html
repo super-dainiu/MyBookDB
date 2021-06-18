@@ -27,12 +27,12 @@
                 {% csrf_token %}
                 <h2 class="text-center">Book Information</h2>
                 <div class="mb-3"><input class="form-control " type="text" name="title" placeholder="Title" value="{{title}}" required=""><small class="form-text text-danger" required>{{bookerr}}</small> </div>
-                <div class="mb-3"><input class="form-control " type="text" name="writers" placeholder="Writers ([作]Name;[译]Name)" value="{{writers}}" required=""><small class="form-text text-danger" required>{{writererr}}</small> </div>
+                <div class="mb-3"><input class="form-control " type="text" name="writers" placeholder="Writers (Format: [作]Name;[译]Name;)" value="{{writers}}" required="" pattern="(\[[作译]\].*;)*"><small class="form-text text-danger" required>{{writererr}}</small> </div>
                 <div class="mb-3"><input class="form-control " type="text" name="publishers" placeholder="Publisher" value="{{publishers}}" required><small class="form-text text-danger" required>{{puberr}}</small>  </div> 
                 <div class="mb-3"><input class="form-control " type="text" name="edition" placeholder="Edition" value="{{edition}}" required></div>
                 <div class="mb-3"><input class="form-control " type="number" step="0.01" min="0" name="price" placeholder="Price" value="{{price}}"required> </div>
                 <div class="mb-3"><input class="form-control " type="number" step="0.01" min="0" name="price_vip" placeholder="VIP Price" value="{{price_vip}}" required> </div>
-                <div class="mb-3"><input class="form-control " type="text"  name="classification" placeholder="Classification (Category/SubCategory)" value="{{classification}}" pattern=".*/.*" required> </div>
+                <div class="mb-3"><input class="form-control " type="text"  name="classification" placeholder="Classification (Format: Category/SubCategory)" value="{{classification}}" pattern=".*/.*" required> </div>
                 <label> Publish Date: </label><input type="date" id="start" name="publish_date" value={{publish_date}} required>
                 <div class="mb-3"><br><input class="form-control " type="number" step="1" min="0" name="storage" placeholder="Storage" value="{{storage}}" required> </div>
                 <div class="text-center mb-3"><button class="btn btn-danger text-center w-100" type="submit" style="background: var(--bs-yellow);">Submit</button></div>

@@ -1,6 +1,7 @@
 from django.db import transaction
 from django.shortcuts import render, redirect
 
+from django.utils.timezone import now
 from login.models import User
 from publishers.models import Publishers
 from writers.models import Writers
@@ -73,7 +74,7 @@ def index(request):
 
 
 def create(request):
-    info = {'writers': "[作]Author;[译]Translator;", 'classification': "Category/SubCategory"}
+    info = {'publish_date': now().date().isoformat()}
     if request.method == "POST":
         title = request.POST.get("title")
         writers = request.POST.get("writers")
@@ -130,42 +131,76 @@ def create(request):
 
 
 def edit(request, bookid):
+    info = {}
     with transaction.atomic():
         target = Books.objects.select_for_update(skip_locked=True).get(id=bookid)
-        info = {'title': target.title, 'sex': target.sex, 'phone': target.phone, 'email': target.email,
-                'writer': target.writer, 'vip': str(target.vip)}
+        t_writers = ''
+        for writer in target.writers.all():
+            t_writers = t_writers + str(writer) + ';'
+        info = {'title': target.title, 'price': target.price, 'price_vip': target.price_vip,
+                'publishers': target.publishers,
+                'classification': target.sub_classification, 'publish_date': str(target.publish_date),
+                'edition': target.edition, 'storage': target.storage, 'writers': t_writers}
         if request.method == "POST":
             title = request.POST.get("title")
             writers = request.POST.get("writers")
+            authors = []
+            translators = []
+            for item in writers.split(";"):
+                if "[作]" in item:
+                    authors.append(item[3:])
+                if "[译]" in item:
+                    translators.append(item[3:])
             price = request.POST.get("price")
             price_vip = request.POST.get("price_vip")
             publishers = request.POST.get("publishers")
             classification = request.POST.get("classification")
-            sub_classification = request.POST.get("sub_classification")
             publish_date = request.POST.get("publish_date")
             edition = request.POST.get("edition")
             storage = request.POST.get("storage")
             info.update(
                 {'title': title, 'writers': writers, 'price': price, 'price_vip': price_vip, 'publishers': publishers,
-                 'classification': classification, 'sub_classification': sub_classification,
-                 'publish_date': publish_date,
+                 'classification': classification, 'publish_date': publish_date,
                  'edition': edition, 'storage': storage})
-
-            if Books.objects.filter(title=title) & Books.objects.filter(publishers=publishers) & Books.objects.filter(
-                    edition=edition):
-                info.update({"bookerr": "Already exists %s" % title})
+            cate1, cate2 = classification.split("/")
+            if not Publishers.objects.filter(name=publishers):
+                info.update({"puberr": "No publisher named %s" % publishers})
+                info['publishers'] = ''
                 return render(request, 'editbooks.html', info)
 
+            for author in authors:
+                if not Writers.objects.filter(name=author, author_type="Author"):
+                    info.update({"writererr": "No author named %s" % author})
+                    info['writers'] = t_writers
+                    return render(request, 'editbooks.html', info)
+            for translator in translators:
+                if not Writers.objects.filter(name=translator, author_type="Translator"):
+                    info.update({"writererr": "No translator named %s" % translator})
+                    info['writers'] = t_writers
+                    return render(request, 'editbooks.html', info)
+
+            if Books.objects.filter(title=title, publishers=Publishers.objects.get(name=publishers),
+                                    edition=edition).exclude(id=bookid):
+                info.update({"bookerr": "Already exists %s  from  %s" % (title, publishers)})
+                return render(request, 'editbooks.html', info)
+
+            new_cate = Classification.objects.get_or_create(class_name=cate1)[0]
+            new_sub_cate = ClassificationSub.objects.get_or_create(class_name=cate2, ancestor_class_name=new_cate)[0]
+
             target.title = title
-            target.writers = writers
             target.price = price
             target.price_vip = price_vip
-            target.publishers = publishers
-            target.classification = classification
-            target.sub_classification = sub_classification
+            target.publishers = Publishers.objects.get(name=publishers)
+            target.classification = new_cate
+            target.sub_classification = new_sub_cate
             target.publish_date = publish_date
             target.edition = edition
             target.storage = storage
+            target.writers.clear()
+            for author in authors:
+                target.writers.add(Writers.objects.get(name=author, author_type='Author'))
+            for translator in translators:
+                target.writers.add(Writers.objects.get(name=translator, author_type='Translator'))
             target.save()
             return redirect('../?id=%d' % bookid)
         return render(request, 'editbooks.html', info)
