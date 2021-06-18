@@ -15,5 +15,5 @@ class Publishers(models.Model):
         verbose_name_plural = '出版社信息'
 
     def __str__(self):
-        return '社名：' + self.name
+        return self.name
 

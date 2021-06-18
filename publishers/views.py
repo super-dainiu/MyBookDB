@@ -46,12 +46,13 @@ def index(request):
         if order2 == "desc":
             orders.append('-' + orderby2)
     if id_filter:
-        info.update({"publishers": Publishers.objects.filter(name__icontains=name_filter, address__icontains=address_filter,
-                                                  email__icontains=email_filter, id=int(id_filter)).order_by(
-            *orders)})
+        info.update(
+            {"publishers": Publishers.objects.filter(name__icontains=name_filter, address__icontains=address_filter,
+                                                     email__icontains=email_filter, id=int(id_filter)).order_by(*orders)})
     else:
-        info.update({"publishers": Publishers.objects.filter(name__icontains=name_filter, address__icontains=address_filter,
-                                                  email__icontains=email_filter).order_by(*orders)})
+        info.update(
+            {"publishers": Publishers.objects.filter(name__icontains=name_filter, address__icontains=address_filter,
+                                                     email__icontains=email_filter).order_by(*orders)})
     return render(request, 'publishers.html', info)
 
 

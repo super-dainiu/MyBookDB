@@ -4,29 +4,35 @@ from django.db import models
 
 
 class Books(models.Model):
-    title = models.CharField(max_length=64, verbose_name='书名')
-    writers = models.ManyToManyField(to="writers.Writers", verbose_name='作者/译者')
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    price_vip = models.DecimalField(max_digits=6, decimal_places=2)
-    publishers = models.ForeignKey(to="publishers.Publishers", verbose_name='出版社', on_delete=models.CASCADE)
-    classification = models.ForeignKey(to="Classification", on_delete=models.CASCADE)
-    sub_classification = models.ForeignKey(to="ClassificationSub", on_delete=models.CASCADE)
-    publish_date = models.DateField(verbose_name='出版日期')
-    edition = models.TextField(verbose_name='版本', null=True)
-    storage = models.PositiveIntegerField(verbose_name='存量', default=0)
+    title = models.CharField(max_length=64, verbose_name='Title')
+    writers = models.ManyToManyField(to="writers.Writers", verbose_name='Author/Translator')
+    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Price')
+    price_vip = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='VIP Price')
+    publishers = models.ForeignKey(to="publishers.Publishers", verbose_name='Publisher', on_delete=models.CASCADE)
+    classification = models.ForeignKey(to="Classification", on_delete=models.CASCADE, verbose_name='Category')
+    sub_classification = models.ForeignKey(to="ClassificationSub", on_delete=models.CASCADE, verbose_name='Sub-Category')
+    publish_date = models.DateField(verbose_name='Publish Date')
+    edition = models.TextField(verbose_name='Edition', null=True)
+    storage = models.PositiveIntegerField(verbose_name='Storage', default=0)
 
     class Meta:
         verbose_name = '书籍信息'
         verbose_name_plural = '书籍信息'
 
     def __str__(self):
-        return self.title + '--相关图书信息'
+        return self.title
 
 
 class Classification(models.Model):
     class_name = models.CharField(max_length=20, verbose_name='主类名', default='blank')
 
+    def __str__(self):
+        return self.class_name
+
 
 class ClassificationSub(models.Model):
     class_name = models.CharField(max_length=20, verbose_name='子类名')
     ancestor_class_name = models.ForeignKey(to="Classification", on_delete=models.CASCADE, verbose_name='父分类')
+
+    def __str__(self):
+        return str(self.ancestor_class_name)+'/'+self.class_name

@@ -40,14 +40,19 @@
                 <input class="form-control" placeholder="Publisher" style="width:60%;" name="publisher" id="publisher" value="{{publisher_filter}}"></input>
             </div>
             <div class="mb-3">
-                <input class="form-control" placeholder="Classification" style="width:60%;" name="classification" id="classification" value="{{classification_filter}}"></input>
+                <input class="form-control" placeholder="Category" style="width:60%;" name="classification" id="classification" value="{{classification_filter}}"></input>
+            </div>
+            <div class="mb-3">
+                <input class="form-control" placeholder="Sub-Category" style="width:60%;" name="sub_classification" id="sub_classification" value="{{sub_classification_filter}}"></input>
             </div>
             <div class="mb-3">
             <label for="orderby" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">Order by</label>
             <select name="orderby" id="orderby" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
                 <option value="" {% if not orderby %}selected=""{% endif %}>None</option>
                 {% for field in fields %}
+                {% if field.name != 'Writer' %}
                 <option value="{{field.name}}" {% if field.name == orderby %}selected=""{% endif %}>{{field.verbose_name}}</option>
+                {% endif %}
                 {% endfor %}
             </select>
             <label for="order" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">In</label>
@@ -62,7 +67,9 @@
             <select name="orderby2" id="orderby2" style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
                 <option value="" {% if not orderby2 %}selected=""{% endif %}>None</option>
                 {% for field in fields %}
+                {% if field.name != 'Writer' %}
                 <option value="{{field.name}}" {% if field.name == orderby2 %}selected=""{% endif %}>{{field.verbose_name}}</option>
+                {% endif %}
                 {% endfor %}
             </select>
             <label for="order2" style="font-family: ABeeZee, sans-serif;color: var(--bs-white);font-size: 15px;">In</label>
@@ -106,17 +113,17 @@
                                     <tr>
                                         <td>{{book.id}}</td>
                                         <td>{{book.title}}</td>
-                                        <td>{{book.writer_id}}</td>
+                                        <td>{% for author in book.writers.all %}{{author}}<br>{% endfor %}</td>
                                         <td>{{book.price}}</td>
                                         <td>{{book.price_vip}}</td>
-                                        <td>{{book.publishers_id}}</td>
-                                        <td>{{book.classification}}</td>
+                                        <td>{{book.publishers}}</td>
+                                        <td>{{book.sub_classification}}</td>
                                         <td>{{book.publish_date}}</td>
                                         <td>{{book.edition}}</td>
-                                        <td>0</td>
+                                        <td>{{book.storage}}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-success" role="button" style="background: rgb(11,171,56);margin: 2px;" href="edituser/{{user.id}}"><i class="fas fa-pencil-alt"></i></a>
-                                            <a class="btn btn-danger" role="button" style="margin: 2px;" href="?{{ request.GET.urlencode }}&delete={{user.id}}"><i class="fas fa-trash"></i></a>
+                                            <a class="btn btn-success" role="button" style="background: rgb(11,171,56);margin: 2px;" href="editbooks/{{book.id}}"><i class="fas fa-pencil-alt"></i></a>
+                                            <a class="btn btn-danger" role="button" style="margin: 2px;" href="?{{ request.GET.urlencode }}&delete={{book.id}}"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     {% endfor %}

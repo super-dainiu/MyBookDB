@@ -11,19 +11,18 @@ def user():
                   "Seoul", "Buenos Aires", "Paris", "London", "Madrid", "Hong Kong"]
         names = pandas.read_csv(r"playground\names.csv")
         names = list(names['names'])
-        user = []
         for stu in stu_id:
             surname = random.choice(names)
             lastname = random.choice(names)
             User.objects.get_or_create(id=stu,
-                                name=surname + ' ' + lastname,
-                                sex=random.choices(["Male", "Female", "None"], [10, 10, 1], k=1)[0],
-                                phone=random.choice(['189', '186', '137', '191', '158']) + str(
-                                    random.randint(10000000, 100000000)),
-                                email=str(stu) + '@fudan.edu.cn',
-                                address=str(random.randint(1, 999)) + ' ' + random.choice(names)[:6] + ' ' +
-                                        random.choice(Roads) + ', ' + random.choice(Cities),
-                                vip=random.choice([0, 1]))
+                                       name=surname + ' ' + lastname,
+                                       sex=random.choices(["Male", "Female", "None"], [10, 10, 1], k=1)[0],
+                                       phone=random.choice(['189', '186', '137', '191', '158']) + str(
+                                           random.randint(10000000, 100000000)),
+                                       email=str(stu) + '@fudan.edu.cn',
+                                       address=str(random.randint(1, 999)) + ' ' + random.choice(names)[:6] + ' ' +
+                                               random.choice(Roads) + ', ' + random.choice(Cities),
+                                       vip=random.choice([0, 1]))
 
 
 def publisher():

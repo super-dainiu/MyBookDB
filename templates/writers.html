@@ -63,10 +63,8 @@
             <select name="author_type" id="author_type"
                     style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
                 <option value="" {% if not author_type_filter %}selected="" {% endif %}>Both</option>
-                <option value="Author" {% if author_type_filter==
-                "Author" %}selected=""{% endif %}>Author</option>
-                <option value="Translator" {% if author_type_filter==
-                "Translator" %}selected=""{% endif %}>Translator</option>
+                <option value="Author" {% if author_type_filter == "Author" %}selected=""{% endif %}>Author</option>
+                <option value="Translator" {% if author_type_filter == "Translator" %}selected=""{% endif %}>Translator</option>
 
             </select>
         </div>
@@ -77,7 +75,7 @@
                     style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
                 <option value="" {% if not orderby %}selected="" {% endif %}>None</option>
                 {% for field in fields %}
-                <option value="{{field.name}}" {% if field.name== orderby %}selected="" {% endif %}>
+                <option value="{{field.name}}" {% if field.name == orderby %}selected="" {% endif %}>
                     {{field.verbose_name}}
                 </option>
                 {% endfor %}
@@ -87,10 +85,8 @@
             <select name="order" id="order"
                     style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
                 <option value="" {% if not order %}selected="" {% endif %}>None</option>
-                <option value="asc" {% if order==
-                "asc" %}selected=""{% endif %}>ASC</option>
-                <option value="desc" {% if order==
-                "desc" %}selected=""{% endif %}>DESC</option>
+                <option value="asc" {% if order == "asc" %}selected=""{% endif %}>ASC</option>
+                <option value="desc" {% if order == "desc" %}selected=""{% endif %}>DESC</option>
             </select>
         </div>
         <div class="mb-3">
@@ -100,7 +96,7 @@
                     style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
                 <option value="" {% if not orderby2 %}selected="" {% endif %}>None</option>
                 {% for field in fields %}
-                <option value="{{field.name}}" {% if field.name== orderby2 %}selected="" {% endif %}>
+                <option value="{{field.name}}" {% if field.name == orderby2 %}selected="" {% endif %}>
                     {{field.verbose_name}}
                 </option>
                 {% endfor %}
@@ -110,10 +106,8 @@
             <select name="order2" id="order2"
                     style="background:#fafdfe; height:28px; width:180px; line-height:28px; border:1px solid #9bc0dd; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px;">
                 <option value="" {% if not order2 %}selected="" {% endif %}>None</option>
-                <option value="asc" {% if order2==
-                "asc" %}selected=""{% endif %}>ASC</option>
-                <option value="desc" {% if order2==
-                "desc" %}selected=""{% endif %}>DESC</option>
+                <option value="asc" {% if order2 == "asc" %}selected=""{% endif %}>ASC</option>
+                <option value="desc" {% if order2 == "desc" %}selected=""{% endif %}>DESC</option>
             </select>
         </div>
         <center>
