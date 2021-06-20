@@ -44,7 +44,7 @@ def index(request):
              "orderby2": orderby2, "order2": order2, "publisher_filter": publisher_filter, "id_filter": id_filter})
     if delete_id:
         Books.objects.filter(id=delete_id).delete()
-    orders=[]
+    orders = []
     if orderby and orderby:
         if order == "asc":
             orders.append(orderby)

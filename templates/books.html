@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}User Management{% endblock %}
+{% block title %}Book Management{% endblock %}
 {% block navibar %}
  <nav class="navbar navbar-dark navbar-expand-md sticky-top shadow-lg" style="color: rgb(255,255,255);opacity: 1;background: var(--bs-secondary);">
         <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1" style="background-color: rgb(255,255,255);color: #ffffff;"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -113,10 +113,10 @@
                                     <tr>
                                         <td>{{book.id}}</td>
                                         <td>{{book.title}}</td>
-                                        <td>{% for author in book.writers.all %}{{author}}<br>{% endfor %}</td>
+                                        <td>{% for author in book.writers.all %}<a href="../writers/?id={{author.id}}">{{author}}</a><br>{% endfor %}</td>
                                         <td>{{book.price}}</td>
                                         <td>{{book.price_vip}}</td>
-                                        <td>{{book.publishers}}</td>
+                                        <td><a href="../publishers/?id={{book.publishers.id}}">{{book.publishers}}</a></td>
                                         <td>{{book.sub_classification}}</td>
                                         <td>{{book.publish_date}}</td>
                                         <td>{{book.edition}}</td>

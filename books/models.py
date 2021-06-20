@@ -4,8 +4,8 @@ from django.db import models
 
 
 class Books(models.Model):
-    title = models.CharField(max_length=64, verbose_name='Title')
-    writers = models.ManyToManyField(to="writers.Writers", verbose_name='Author/Translator')
+    title = models.CharField(max_length=64, verbose_name='Title', db_index=True)
+    writers = models.ManyToManyField(to="writers.Writers", verbose_name='Author/Translator', db_index=True)
     price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='Price')
     price_vip = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='VIP Price')
     publishers = models.ForeignKey(to="publishers.Publishers", verbose_name='Publisher', on_delete=models.CASCADE)
@@ -18,6 +18,13 @@ class Books(models.Model):
     class Meta:
         verbose_name = '书籍信息'
         verbose_name_plural = '书籍信息'
+
+        indexes = [
+            models.Index(fields=['title']),
+            models.Index(fields=['publishers']),
+            models.Index(fields=['classification']),
+            models.Index(fields=['sub_classification']),
+        ]
 
     def __str__(self):
         return self.title
