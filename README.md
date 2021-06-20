@@ -308,5 +308,7 @@ The URL tree should be constructed as follows:
 
 #### 2.1 数据流图
 
-<img src="C:\Users\Daniel\Desktop\数据库\MyBookDB\designs\数据流图.PNG" alt="数据流图" style="zoom:60%;" />
+<img src="https://github.com/Super-Dainiu/DATA130039.01-MyBookDB/blob/master/Designs/%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE.PNG" style="zoom:60%;" />
+
+
 
