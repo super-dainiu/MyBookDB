@@ -158,7 +158,7 @@
                                 <tr>
                                     <td>{{order.id}}</td>
                                     <td>{{order.date}}</td>
-                                    <td>{{order.user}}</td>
+                                    <td><a href="../user/?id={{order.user.id}}" style="color: var(--bs-yellow); text-decoration: none;">{{order.user}}</a></td>
                                     <td>{% for detail in order.book.all %}
                                         <br><a href="../books/?id={{detail.id}}" style="color: var(--bs-yellow); text-decoration: none;">{{detail.title}}</a><br>
                                         {% endfor %}<br></td>

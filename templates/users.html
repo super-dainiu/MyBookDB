@@ -91,7 +91,6 @@
                                     <th class="text-center" style="background: var(--bs-yellow);">phone</th>
                                     <th class="text-center" style="background: var(--bs-yellow);">address</th>
                                     <th class="text-center" style="background: var(--bs-yellow);">vip</th>
-                                    <th class="text-center" style="background: var(--bs-yellow);">orders</th>
                                     <th class="text-center" style="background: var(--bs-yellow);">action</th>
                                 </tr>
                             </thead>
@@ -105,7 +104,6 @@
                                         <td>{{user.phone}}</td>
                                         <td>{{user.address}}</td>
                                         <td>{% if user.vip %}Yes{% else %}No{% endif %}</td>
-                                        <td>0</td>
                                         <td class="text-center">
                                             <a class="btn btn-success" role="button" style="background: rgb(11,171,56);margin: 2px;" href="edituser/{{user.id}}"><i class="fas fa-pencil-alt"></i></a>
                                             <a class="btn btn-danger" role="button" style="margin: 2px;" href="?{{ request.GET.urlencode }}&delete={{user.id}}"><i class="fas fa-trash"></i></a>
