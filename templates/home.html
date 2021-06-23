@@ -28,4 +28,9 @@
             <div class="buttons"><a class="btn btn-primary" role="button" href="?business=1" style="background: var(--bs-yellow);">I'm ready!</a><a class="btn btn-light" role="button" href="../home">Let me take a break!</a></div>
         </div>
     </section>
+{% if message %}
+<script>
+    alert('{{ message }}');
+</script>
+{% endif %}
 {% endblock %}
