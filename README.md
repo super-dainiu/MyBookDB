@@ -18,6 +18,8 @@ Project for 数据库及实现
     + [Beta 0.3.3 Book Management (June 18, 2021)](#beta-033-book-management--june-18--2021-)
     + [V 1.0.0 Launch Project (June 19, 2021)](#v-100-launch-project--june-19--2021-)
     + [V 1.0.1 Add Index to Books (June 20, 2021)](#v-101-add-index-to-books--june-20--2021-)
+    + [V 1.1.0 Orders Simulation (June 22, 2021)](#v-110-orders-simulation--june-22--2021-)
+    + [V 1.1.1 Orders Management (June 23, 2021)](#v-111-orders-management--june-23--2021-)
   * [Database Schema](#database-schema)
     + [Login_user](#login-user)
     + [Users_user](#users-user)
@@ -46,8 +48,6 @@ Project for 数据库及实现
       - [3.2  检索功能](#32------)
       - [3.3  修改/删除功能](#33---------)
       - [3.4  订单操作](#34------)
-
-
 
 
 
