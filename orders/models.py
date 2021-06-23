@@ -4,12 +4,17 @@ from django.db import models
 
 
 class Orders(models.Model):
+    CONFIRMATION = (
+        ('Y', 'Yes'),
+        ('N', 'No'),
+    )
     id = models.CharField(max_length=64, verbose_name='Order ID', primary_key=True)
-    last_edit = models.DateTimeField(verbose_name='Last Edit')
+    lastedit = models.ForeignKey(to="login.User", verbose_name='Last Edit', on_delete=models.CASCADE, null=True)
     date = models.DateField(verbose_name='Date')
     user = models.ForeignKey(to="users.User", verbose_name='User', on_delete=models.CASCADE)
     book = models.ManyToManyField(to="books.Books", through="Details", through_fields=('order', 'book'),
                                   verbose_name='Books')
+    confirm = models.CharField(max_length=1, choices=CONFIRMATION, verbose_name='Confirmation', default='N')
 
     class Meta:
         verbose_name = '订单信息'

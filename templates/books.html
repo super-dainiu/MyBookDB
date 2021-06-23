@@ -113,10 +113,10 @@
                                     <tr>
                                         <td>{{book.id}}</td>
                                         <td>{{book.title}}</td>
-                                        <td>{% for author in book.writers.all %}<a href="../writers/?id={{author.id}}">{{author}}</a><br>{% endfor %}</td>
+                                        <td>{% for author in book.writers.all %}<a href="../writers/?id={{author.id}}"style="color: var(--bs-yellow); text-decoration: none;">{{author}}</a><br>{% endfor %}</td>
                                         <td>{{book.price}}</td>
                                         <td>{{book.price_vip}}</td>
-                                        <td><a href="../publishers/?id={{book.publishers.id}}">{{book.publishers}}</a></td>
+                                        <td><a href="../publishers/?id={{book.publishers.id}}"style="color: var(--bs-yellow); text-decoration: none;">{{book.publishers}}</a></td>
                                         <td>{{book.sub_classification}}</td>
                                         <td>{{book.publish_date}}</td>
                                         <td>{{book.edition}}</td>
