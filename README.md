@@ -67,13 +67,30 @@ Project for 数据库及实现
 MyBookDB works on Windows 10. Chrome is recommended to have the best experience.
 
 ## Installation
-1. Git clone or download the project through Github Desktop.
-2. Create virtualenv and install dependencies:
+
+1. Create virtualenv (Recommended), choose the corresponding interpreter.
+2. Git clone through Git CMD or download the project through Github Desktop to your direction:
+
+``` python
+  git clone https://github.com/Super-Dainiu/DATA130039.01-MyBookDB 
+        # Following message will occur.
+```
+
+>  Cloning into 'DATA130039.01-MyBookDB'...
+>  remote: Enumerating objects: 846, done.
+>  remote: Counting objects: 100% (846/846), done.
+>  remote: Compressing objects: 100% (551/551), done.
+>  Receiving objects: 100% (846/846), 91.00 MiB | 2.43 MiB/s, done.
+>  remote: Total 846 (delta 453), reused 661 (delta 281), pack-reused 0
+>  Resolving deltas: 100% (453/453), done.
+
+3. Enter the root file "DATA130039.01-MyBookDB/" and install dependencies:
 
   ```
   pip install -r requirements.txt
   ```
-3. Set up database and replace my username and password in project root file "MyBookDB/settings.py" containing something like:
+
+4. Set up database and replace my username and password in project root file "MyBookDB/settings.py" containing something like:
 
   ```python
 DATABASES = {
@@ -87,19 +104,38 @@ DATABASES = {
     }
 }
   ```
-4. Apply migrations and create superuser:
 
-  ```
+5. Apply migrations and create superuser:
+
+  ```python
   python manage.py migrate
-  python manage.py createsuperuser
+  python manage.py createsuperuser # Not necessarily required.
   ```
-5. To avoid starting the system with empty database, run in command line:
+
+6. To avoid starting the system with empty database, run in command line:
 
 ``` python
   python data.py
 ```
 
-6. Database being polluted, you may:
+7. Start server at local host:
+
+```python
+  python manage.py runserver # Following message will occur.
+```
+
+>    Watching for file changes with StatReloader
+>    Performing system checks...
+>
+>    System check identified no issues (0 silenced).
+>    June 25, 2021 - 00:47:23
+>    Django version 3.2.3, using settings 'MyBookDB.settings'
+>    Starting development server at http://127.0.0.1:8000/
+>    Quit the server with CTRL-BREAK.
+
+8. Enter server:  http://127.0.0.1:8000/
+
+9. Database being polluted, you may:
 
 ```python
   python manage.py flush
