@@ -72,7 +72,7 @@ MyBookDB works on Windows 10. Chrome is recommended to have the best experience.
 2. Git clone through Git CMD or download the project through Github Desktop to your direction:
 
 ``` python
-  git clone https://github.com/Super-Dainiu/DATA130039.01-MyBookDB 
+  git clone https://github.com/Super-Dainiu/MyBookDB 
         # Following message will occur.
 ```
 
